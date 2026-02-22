@@ -1,0 +1,148 @@
+<main class="flex flex-col gap-4 w-full h-full text-[#E1DEF5E5]">
+  <!-- <div class="flex justify-between items-center px-6 pt-4 shrink-0">
+    <img
+      src="./../../assets/imgs/white-logo.svg"
+      class="my-2 w-[182px]"
+      alt="logo"
+    />
+  </div> -->
+  <div class="mt-12 overflow-y-auto">
+    <ul class="m-0 p-0 overflow-hidden list-none">
+      <li>
+        <a [ngClass]="{ active: activeRoute() == '' }" routerLink="/">
+          <i class="me-2 pi pi-chart-line"></i>
+          <span class="font-medium">{{ "SideNav.analytics" | translate }}</span>
+        </a>
+      </li>
+      <li>
+        <a [ngClass]="{ active: activeRoute() == 'map' }" routerLink="/map">
+          <i class="me-2 pi pi-map"></i>
+          <span class="font-medium">{{ "SideNav.map" | translate }}</span>
+        </a>
+      </li>
+      <li>
+        <a
+          [ngClass]="{ active: activeRoute() == 'assetsList' }"
+          routerLink="/assetsList"
+        >
+          <i class="me-2 pi pi-home"></i>
+          <span class="font-medium">{{
+            "SideNav.assets_list" | translate
+          }}</span>
+        </a>
+      </li>
+      <!-- @if(authService.isEditor()) { -->
+      <li>
+        <a
+          [ngClass]="{ active: activeRoute() == 'companies' }"
+          routerLink="/companies"
+        >
+          <i class="me-2 pi pi-building-columns"></i>
+          <span class="font-medium">{{ "SideNav.companies" | translate }}</span>
+        </a>
+      </li>
+
+      <li>
+        <a
+          [ngClass]="{ active: activeRoute() == 'orderassets' }"
+          routerLink="/orderassets"
+        >
+          <i class="me-2 pi pi-building-columns"></i>
+          <span class="font-medium">{{ "Orders" | translate }}</span>
+        </a>
+      </li>
+
+
+
+      <li>
+        <a
+          [ngClass]="{ active: activeRoute() == 'studies' }"
+          routerLink="/studies"
+        >
+          <i class="me-2 pi pi-building-columns"></i>
+          <span class="font-medium">{{ "studies" | translate }}</span>
+        </a>
+      </li>
+
+
+
+      <!-- } -->
+      <!-- <li>
+        <a
+          [ngClass]="{ active: activeRoute() == 'projects' }"
+          routerLink="/projects"
+        >
+          <i class="me-2 pi pi-building"></i>
+          <span class="font-medium">{{ "SideNav.projects" | translate }}</span>
+        </a>
+      </li> -->
+
+      @if(authService.isEditor()) {
+
+      <li>
+        <a
+          [ngClass]="{ active: activeRoute() == 'locations' }"
+          routerLink="/locations"
+        >
+          <i class="me-2 pi pi-map-marker"></i>
+          <span class="font-medium">{{ "SideNav.locations" | translate }}</span>
+        </a>
+      </li>
+      <li>
+        <a
+          pStyleClass="@next"
+          enterFromClass="hidden"
+          enterActiveClass="animate-slidedown"
+          leaveToClass="hidden"
+          leaveActiveClass="animate-slideup"
+        >
+          <i class="me-2 pi pi-users"></i>
+          <span class="flex-1 font-medium">{{
+            "accounts.title" | translate
+          }}</span>
+          <i class="pi pi-chevron-down"></i>
+        </a>
+        <ul
+          class="hidden m-0 py-0 pr-0 pl-4 overflow-y-hidden transition-all duration-[400ms] ease-in-out list-none"
+        >
+          <li>
+            <a
+              [ngClass]="{ active: activeRoute() == 'adminsList' }"
+              routerLink="/adminsList"
+            >
+              <span class="font-medium">{{
+                "accounts.admins" | translate
+              }}</span>
+            </a>
+          </li>
+          <li>
+            <a
+              [ngClass]="{ active: activeRoute() == 'usersList' }"
+              routerLink="/usersList"
+            >
+              <span class="font-medium">{{
+                "accounts.users" | translate
+              }}</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      }
+    </ul>
+  </div>
+  <div class="mt-auto">
+    <span class="flex justify-center text-sm"
+      >© 2024 Claro. All rights reserved</span
+    >
+    <hr class="mx-4 mb-4 border-0 border-surface border-t" />
+    <p-toast />
+    <p-confirmdialog />
+    <p-button
+      label="{{ 'General.logout' | translate }}"
+      icon="pi pi-sign-out"
+      class="w-full [&>button]:!w-full"
+      severity="secondary"
+      (click)="logout()"
+    />
+  </div>
+</main>

@@ -1,0 +1,138 @@
+
+    <div class="flex-1">
+        <label for="companyId" class="block mb-3 font-bold">
+        {{ "Company" | translate }}
+        </label>
+        <p-select
+        [options]="companyOptions"
+        id="companyId"
+        [formControl]="companyId"
+        optionLabel="name"
+        optionValue="id"
+        placeholder="{{ '' | translate }}"
+        class="w-full"
+        />
+        @if (submitted && !companyId.value) {
+        <small class="text-red-500">{{ "General.required" | translate }}</small>
+        }
+        @if (companyId.errors?.['serverError']) {
+        @for (err of companyId.errors?.['serverError']; track $index) {
+            <p class="text-red-500">{{ err }}</p>
+        }
+        }
+    </div>
+
+
+<div class="flex flex-col gap-6">
+<div class="flex-1">
+  <label for="assetsIds" class="block mb-3 font-bold">
+    {{ "Assets" | translate }}
+  </label>
+<p-multiSelect
+  [options]="assetsOptions"
+  id="assetsIds"
+  [formControl]="assetsIds"
+  optionLabel="name"
+  optionValue="id"
+  placeholder="{{ '' | translate }}"
+  [showClear]="true"
+  class="w-full"
+/> @if (submitted && !assetsIds.value) {
+      <small class="text-red-500">{{ "General.required" | translate }}</small>
+    }
+    @if (assetsIds.errors?.['serverError']) {
+      @for (err of assetsIds.errors?.['serverError']; track $index) {
+        <p class="text-red-500">{{ err }}</p>
+      }
+    }
+  </div>
+
+
+  <fieldset class="flex flex-col gap-4">
+    <div class="flex-1">
+      <label for="requirements" class="block mb-3 font-bold">
+        {{ "requirements" | translate }}
+      </label>
+      <input
+        type="text"
+        pInputText
+        id="requirements"
+        [formControl]="requirements"
+        required
+        autofocus
+        fluid
+        [ngClass]="{ 'ng-invalid': submitted && requirements.invalid }"
+      />
+      @if (submitted && !requirements.value) {
+        <small class="text-red-500">{{ "General.required" | translate }}</small>
+      }
+      @if (requirements.errors?.['serverError']) {
+        @for (err of requirements.errors?.['serverError']; track $index) {
+          <p class="text-red-500">{{ err }}</p>
+        }
+      }
+    </div>
+    
+    <div class="flex-1">
+      <label for="notes" class="block mb-3 font-bold">
+        {{ "notes" | translate }}
+      </label>
+      <input
+        type="text"
+        pInputText
+        id="notes"
+        [formControl]="notes"
+        required
+        fluid
+        [ngClass]="{ 'ng-invalid': submitted && notes.invalid }"
+      />
+      @if (submitted && !notes.value) {
+        <small class="text-red-500">{{ "General.required" | translate }}</small>
+      }
+      @if (notes.errors?.['serverError']) {
+        @for (err of notes.errors?.['serverError']; track $index) {
+          <p class="text-red-500">{{ err }}</p>
+        }
+      }
+    </div>
+
+    <div class="flex-1">
+      <label for="requestSource" class="block mb-3 font-bold">
+        {{ "requestSource" | translate }}
+      </label>
+      <input
+        type="text"
+        pInputText
+        id="requestSource"
+        [formControl]="requestSource"
+        required
+        fluid
+        [ngClass]="{ 'ng-invalid': submitted && requestSource.invalid }"
+      />
+      @if (submitted && !requestSource.value) {
+        <small class="text-red-500">{{ "General.required" | translate }}</small>
+      }
+      @if (requestSource.errors?.['serverError']) {
+        @for (err of requestSource.errors?.['serverError']; track $index) {
+          <p class="text-red-500">{{ err }}</p>
+        }
+      }
+    </div>
+  </fieldset>
+</div>
+
+<div class="flex justify-end gap-4 mt-4">
+  <p-button 
+    label="Cancel" 
+    icon="pi pi-times" 
+    text 
+    (click)="closeDialog()" 
+  />
+  <p-button
+    label="Save"
+    icon="pi pi-check"
+    [loading]="loading"
+    (click)="submit()"
+    [disabled]="!form.dirty"
+  />
+</div>
