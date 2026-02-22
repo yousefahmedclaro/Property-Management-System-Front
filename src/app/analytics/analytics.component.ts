@@ -11,18 +11,18 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import {
   ProjectsGetListProviders,
   ProjectsListUseCase,
-} from '../../Modules/assetsCrm/assetsCrm.Application/usecases/projects/projectsGetList.usecase';
+} from '../../Modules/PropertyCrm/assetsCrm.Application/usecases/projects/projectsGetList.usecase';
 import {
   AssetslocationGetListProviders,
   AssetslocationListUseCase,
-} from '../../Modules/assetsCrm/assetsCrm.Application/usecases/Assetslocation/assetslocationGetList.usecase';
-import { Project } from '../../Modules/assetsCrm/assetsCrm.Domain/project';
-import { Company } from '../../Modules/assetsCrm/assetsCrm.Domain/company';
-import { AssetLocation } from '../../Modules/assetsCrm/assetsCrm.Domain/assetLocation';
+} from '../../Modules/PropertyCrm/assetsCrm.Application/usecases/Assetslocation/assetslocationGetList.usecase';
+import { Project } from '../../Modules/PropertyCrm/assetsCrm.Domain/project';
+import { Company } from '../../Modules/PropertyCrm/assetsCrm.Domain/company';
+import { AssetLocation } from '../../Modules/PropertyCrm/assetsCrm.Domain/assetLocation';
 import {
   CompaniesGetListProviders,
   CompaniesListUseCase,
-} from '../../Modules/assetsCrm/assetsCrm.Application/usecases/company/companiesGetList.usecase';
+} from '../../Modules/PropertyCrm/assetsCrm.Application/usecases/company/companiesGetList.usecase';
 import { CurrencyPipe } from '@angular/common';
 import { ChartModule } from 'primeng/chart';
 import { Knob } from 'primeng/knob';

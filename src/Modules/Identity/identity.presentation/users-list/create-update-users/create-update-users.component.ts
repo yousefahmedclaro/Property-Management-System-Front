@@ -24,11 +24,11 @@ import {
 import { Role, User } from '../../../Identity.Domain/user';
 import { ToggleSwitch } from 'primeng/toggleswitch';
 import { MultiSelectModule } from 'primeng/multiselect';
-import { Company } from '../../../../assetsCrm/assetsCrm.Domain/company';
+import { Company } from '../../../../PropertyCrm/assetsCrm.Domain/company';
 import {
   CompaniesGetLookUpProviders,
   CompaniesGetLookUpUseCase,
-} from '../../../../assetsCrm/assetsCrm.Application/usecases/company/companiesGetLookUp.usecase';
+} from '../../../../PropertyCrm/assetsCrm.Application/usecases/company/companiesGetLookUp.usecase';
 import { Lookup } from '../../../../Common/domain/lookup';
 
 @Component({
