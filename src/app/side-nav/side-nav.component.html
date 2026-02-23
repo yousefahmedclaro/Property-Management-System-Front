@@ -8,19 +8,24 @@
   </div> -->
   <div class="mt-12 overflow-y-auto">
     <ul class="m-0 p-0 overflow-hidden list-none">
-      <li>
+
+
+      <!-- <li>
         <a [ngClass]="{ active: activeRoute() == '' }" routerLink="/">
           <i class="me-2 pi pi-chart-line"></i>
           <span class="font-medium">{{ "SideNav.analytics" | translate }}</span>
         </a>
-      </li>
-      <li>
+      </li> -->
+
+      <!-- <li>
         <a [ngClass]="{ active: activeRoute() == 'map' }" routerLink="/map">
           <i class="me-2 pi pi-map"></i>
           <span class="font-medium">{{ "SideNav.map" | translate }}</span>
         </a>
-      </li>
-      <li>
+      </li> -->
+
+
+      <!-- <li>
         <a
           [ngClass]="{ active: activeRoute() == 'assetsList' }"
           routerLink="/assetsList"
@@ -30,9 +35,11 @@
             "SideNav.assets_list" | translate
           }}</span>
         </a>
-      </li>
+      </li> -->
+
+
       <!-- @if(authService.isEditor()) { -->
-      <li>
+      <!-- <li>
         <a
           [ngClass]="{ active: activeRoute() == 'companies' }"
           routerLink="/companies"
@@ -40,9 +47,19 @@
           <i class="me-2 pi pi-building-columns"></i>
           <span class="font-medium">{{ "SideNav.companies" | translate }}</span>
         </a>
-      </li>
+      </li> -->
 
       <li>
+        <a
+          [ngClass]="{ active: activeRoute() == 'renters' }"
+          routerLink="/renters"
+        >
+          <i class="me-2 pi pi-building-columns"></i>
+          <span class="font-medium">{{ "SideNav.renters" | translate }}</span>
+        </a>
+      </li>
+
+      <!-- <li>
         <a
           [ngClass]="{ active: activeRoute() == 'orderassets' }"
           routerLink="/orderassets"
@@ -50,11 +67,11 @@
           <i class="me-2 pi pi-building-columns"></i>
           <span class="font-medium">{{ "Orders" | translate }}</span>
         </a>
-      </li>
+      </li> -->
 
 
 
-      <li>
+      <!-- <li>
         <a
           [ngClass]="{ active: activeRoute() == 'studies' }"
           routerLink="/studies"
@@ -62,7 +79,7 @@
           <i class="me-2 pi pi-building-columns"></i>
           <span class="font-medium">{{ "studies" | translate }}</span>
         </a>
-      </li>
+      </li> -->
 
 
 
@@ -79,7 +96,7 @@
 
       @if(authService.isEditor()) {
 
-      <li>
+      <!-- <li>
         <a
           [ngClass]="{ active: activeRoute() == 'locations' }"
           routerLink="/locations"
@@ -87,7 +104,12 @@
           <i class="me-2 pi pi-map-marker"></i>
           <span class="font-medium">{{ "SideNav.locations" | translate }}</span>
         </a>
-      </li>
+      </li> -->
+
+
+
+
+      
       <li>
         <a
           pStyleClass="@next"

@@ -37,13 +37,13 @@ export const routes: Routes = [
       //       './../Modules/assetsCrm/assetsCrm.presentation/assets-list//view-assets/view-assets.component'
       //     ).then((m) => m.ViewAssetsComponent),
       // },
-      // {
-      //   path: 'companies',
-      //   loadComponent: () =>
-      //     import(
-      //       '../Modules/assetsCrm/assetsCrm.presentation/companies/companies.component'
-      //     ).then((m) => m.CompaniesComponent),
-      // },
+      {
+        path: 'renters',
+        loadComponent: () =>
+          import(
+            '../Modules/PropertyCrm/PropertyCrm.presentation/Renter/renter.component'
+          ).then((m) => m.RenterComponent),
+      },
       //       {
       //   path: 'orderassets',
       //   loadComponent: () =>

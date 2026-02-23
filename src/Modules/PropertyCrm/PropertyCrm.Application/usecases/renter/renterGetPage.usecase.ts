@@ -7,14 +7,13 @@ import { renterRepository, renterRepositoryProvider } from '../../repositories/r
 
 @Injectable()
 class renterGetPageUseCase implements UseCase<
-  { params: PaginationParams; assetId: string },
+  { params: PaginationParams;  },
   PaginationRespons<renter>
 > {
   private readonly _renterRepository = inject(renterRepository);
 
   execute(obj: {
     params: PaginationParams;
-    assetId: string;
   }): Observable<PaginationRespons<renter>> {
     return this._renterRepository.getPage(obj.params);
   }

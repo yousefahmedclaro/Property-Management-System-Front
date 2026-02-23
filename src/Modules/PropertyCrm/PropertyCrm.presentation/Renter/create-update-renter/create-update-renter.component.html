@@ -1,0 +1,117 @@
+
+  <fieldset class="flex flex-col gap-4">
+    <div class="flex-1">
+      <label for="name" class="block mb-3 font-bold">
+        {{ "name" | translate }}
+      </label>
+      <input
+        type="text"
+        pInputText
+        id="name"
+        [formControl]="name"
+        required
+        autofocus
+        fluid
+        [ngClass]="{ 'ng-invalid': submitted && name.invalid }"
+      />
+      @if (submitted && !name.value) {
+        <small class="text-red-500">{{ "General.required" | translate }}</small>
+      }
+      @if (name.errors?.['serverError']) {
+        @for (err of name.errors?.['serverError']; track $index) {
+          <p class="text-red-500">{{ err }}</p>
+        }
+      }
+    </div>
+    
+    <div class="flex-1">
+      <label for="email" class="block mb-3 font-bold">
+        {{ "email" | translate }}
+      </label>
+      <input
+        type="text"
+        pInputText
+        id="email"
+        [formControl]="email"
+        required
+        fluid
+        [ngClass]="{ 'ng-invalid': submitted && email.invalid }"
+      />
+      @if (submitted && !email.value) {
+        <small class="text-red-500">{{ "General.required" | translate }}</small>
+      }
+      @if (email.errors?.['serverError']) {
+        @for (err of email.errors?.['serverError']; track $index) {
+          <p class="text-red-500">{{ err }}</p>
+        }
+      }
+    </div>
+
+
+        <div class="flex-1">
+      <label for="budget" class="block mb-3 font-bold">
+        {{ "budget" | translate }}
+      </label>
+      <input
+        type="text"
+        pInputText
+        id="budget"
+        [formControl]="budget"
+        required
+        fluid
+        [ngClass]="{ 'ng-invalid': submitted && budget.invalid }"
+      />
+      @if (submitted && !budget.value) {
+        <small class="text-red-500">{{ "General.required" | translate }}</small>
+      }
+      @if (budget.errors?.['serverError']) {
+        @for (err of budget.errors?.['serverError']; track $index) {
+          <p class="text-red-500">{{ err }}</p>
+        }
+      }
+    </div>
+
+
+
+
+
+    <div class="flex-1">
+      <label for="phoneNumber" class="block mb-3 font-bold">
+        {{ "phoneNumber" | translate }}
+      </label>
+      <input
+        type="text"
+        pInputText
+        id="phoneNumber"
+        [formControl]="phoneNumber"
+        required
+        fluid
+        [ngClass]="{ 'ng-invalid': submitted && phoneNumber.invalid }"
+      />
+      @if (submitted && !phoneNumber.value) {
+        <small class="text-red-500">{{ "General.required" | translate }}</small>
+      }
+      @if (phoneNumber.errors?.['serverError']) {
+        @for (err of phoneNumber.errors?.['serverError']; track $index) {
+          <p class="text-red-500">{{ err }}</p>
+        }
+      }
+    </div>
+  </fieldset>
+
+
+<div class="flex justify-end gap-4 mt-4">
+  <p-button 
+    label="Cancel" 
+    icon="pi pi-times" 
+    text 
+    (click)="closeDialog()" 
+  />
+  <p-button
+    label="Save"
+    icon="pi pi-check"
+    [loading]="loading"
+    (click)="submit()"
+    [disabled]="!form.dirty"
+  />
+</div>
