@@ -1,0 +1,44 @@
+
+  <fieldset class="flex flex-col gap-4">
+    <div class="flex-1">
+      <label for="name" class="block mb-3 font-bold">
+        {{ "name" | translate }}
+      </label>
+      <input
+        type="text"
+        pInputText
+        id="name"
+        [formControl]="name"
+        required
+        autofocus
+        fluid
+        [ngClass]="{ 'ng-invalid': submitted && name.invalid }"
+      />
+      @if (submitted && !name.value) {
+        <small class="text-red-500">{{ "General.required" | translate }}</small>
+      }
+      @if (name.errors?.['serverError']) {
+        @for (err of name.errors?.['serverError']; track $index) {
+          <p class="text-red-500">{{ err }}</p>
+        }
+      }
+    </div>
+
+  </fieldset>
+
+
+<div class="flex justify-end gap-4 mt-4">
+  <p-button 
+    label="Cancel" 
+    icon="pi pi-times" 
+    text 
+    (click)="closeDialog()" 
+  />
+  <p-button
+    label="Save"
+    icon="pi pi-check"
+    [loading]="loading"
+    (click)="submit()"
+    [disabled]="!form.dirty"
+  />
+</div>

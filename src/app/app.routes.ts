@@ -44,6 +44,14 @@ export const routes: Routes = [
             '../Modules/PropertyCrm/PropertyCrm.presentation/Renter/renter.component'
           ).then((m) => m.RenterComponent),
       },
+
+            {
+        path: 'categories',
+        loadComponent: () =>
+          import(
+            '../Modules/PropertyCrm/PropertyCrm.presentation/category/category.component'
+          ).then((m) => m.CategoryComponent),
+      },
       //       {
       //   path: 'orderassets',
       //   loadComponent: () =>

@@ -59,6 +59,16 @@
         </a>
       </li>
 
+       <li>
+        <a
+          [ngClass]="{ active: activeRoute() == 'categories' }"
+          routerLink="/categories"
+        >
+          <i class="me-2 pi pi-building-columns"></i>
+          <span class="font-medium">{{ "SideNav.categories" | translate }}</span>
+        </a>
+      </li>
+
       <!-- <li>
         <a
           [ngClass]="{ active: activeRoute() == 'orderassets' }"
