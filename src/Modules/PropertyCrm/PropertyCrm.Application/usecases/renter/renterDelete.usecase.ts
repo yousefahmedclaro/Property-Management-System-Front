@@ -7,8 +7,9 @@ import { renterRepository, renterRepositoryProvider } from '../../repositories/r
 class renterDeleteUseCase implements UseCaseWithOutOutPut<string> {
   private readonly _renterRepository = inject(renterRepository);
 
-  execute(renterId: string): Observable<object> {
-    return this._renterRepository.delete(renterId);
+  execute(Id: string): Observable<object> {
+    console.log('renterDeleteUseCase execute with Id:', Id);
+    return this._renterRepository.delete(Id);
   }
 }
 

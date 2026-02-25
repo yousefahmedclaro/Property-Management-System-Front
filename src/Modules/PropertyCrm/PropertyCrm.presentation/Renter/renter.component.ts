@@ -103,6 +103,7 @@ export class RenterComponent implements OnInit {
   }
 
   delete(renter: renter) {
+    console.log('Delete in presentation called for renter:', renter.id);
     this.table.delete(renter, this.renterDeleteUseCase, () => {
       this.getData(this.table.PaginationParams);
     });

@@ -68,11 +68,12 @@ export class renterRepositoryImplementation implements renterRepository {
   }
 
   delete(renterId: string): Observable<object> {
+    console.log('renterRepositoryImplementation delete called with renterId:', renterId);
     return this._httpClient.delete(
       `${environment.apiUrl}/v1/AdminPanel/Renter`,
       {
         params: {
-          id: renterId,
+          Id: renterId,
         },
       }
     );
