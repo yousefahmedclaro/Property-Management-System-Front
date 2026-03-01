@@ -1,21 +1,21 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { InputTextModule } from 'primeng/inputtext';
 import { SelectModule } from 'primeng/select';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { finalize } from 'rxjs';
 import { CommonModule } from '@angular/common';
-import { Button } from 'primeng/button';
+import { Button, ButtonModule } from 'primeng/button';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { TableModule } from "primeng/table";  
-import { renterPostProviders, renterPostUseCase } from '../../../PropertyCrm.Application/usecases/renter/renterPost.usecase';
-import { renterPutProviders, renterPutUseCase } from '../../../PropertyCrm.Application/usecases/renter/renterPut.usecase';
-import { renter } from '../../../PropertyCrm.Domain/renter';
+import { rentalDurationPostProviders, rentalDurationPostUseCase } from '../../../PropertyCrm.Application/usecases/rentalDuration/rentalDurationPostUseCase';
+import { rentalDurationPutProviders, rentalDurationPutUseCase } from '../../../PropertyCrm.Application/usecases/rentalDuration/rentalDurationPutUseCase';
+import { rentalDuration } from '../../../PropertyCrm.Domain/rentalDuration';
 
 @Component({
-  selector: 'createupdaterenterComponent',
-  templateUrl: './create-update-renter.component.html',
+  selector: 'createupdaterentalDurationComponent',
+  templateUrl: './create-update-rentalDuration.component.html',
   standalone: true,
   imports: [
     TranslateModule,
@@ -24,64 +24,48 @@ import { renter } from '../../../PropertyCrm.Domain/renter';
     SelectModule,
     CommonModule,
     Button,
+    ButtonModule,
     MultiSelectModule,
     TableModule
 ],
   providers: [
-    renterPostProviders,
-    renterPutProviders
+  rentalDurationPostProviders,
+  rentalDurationPutProviders
   ],
 })
-export class createupdaterenterComponent implements OnInit {
+export class createupdaterentalDurationComponent implements OnInit {
   public form: FormGroup;
   public loading = false;
   public submitted = false;
-  private data: renter;
-
+  private data: rentalDuration;
   private readonly config = inject(DynamicDialogConfig);
   private readonly ref = inject(DynamicDialogRef);
-  private readonly renterPostUseCase = inject(renterPostUseCase);
-  private readonly renterPutUseCase = inject(renterPutUseCase);
-
+  private readonly rentalDurationPostUseCase = inject(rentalDurationPostUseCase);
+  private readonly rentalDurationPutUseCase = inject(rentalDurationPutUseCase);
 
   constructor() {
-    this.data = this.config.data;
-    
+    this.data = this.config.data; 
 
 console.log(this.data);
-
 this.form = new FormGroup({
   name: new FormControl(this.data?.name ?? ''),
-  email: new FormControl(this.data?.email ?? '', [Validators.email]),
-  budget: new FormControl(this.data?.budget ?? ''),
-  phoneNumber: new FormControl(this.data?.phoneNumber ?? ''),
+    months: new FormControl(this.data?.months ?? 0),
 });
 }
-
-
 
   get name(): FormControl {
     return this.form.get('name') as FormControl;
   }
 
-    get email(): FormControl {
-    return this.form.get('email') as FormControl;
-  }
-
-    get budget(): FormControl {
-    return this.form.get('budget') as FormControl;
-  }
-
-    get phoneNumber(): FormControl {
-    return this.form.get('phoneNumber') as FormControl;
+    get months(): FormControl {
+    return this.form.get('months') as FormControl;
   }
   
-
   ngOnInit() {}
 
-  create(renter: renter) {
-    this.renterPostUseCase
-      .execute(renter)
+  create(rentalDuration: rentalDuration) {
+    this.rentalDurationPostUseCase
+      .execute(rentalDuration)
       .pipe(finalize(() => (this.loading = false)))
       .subscribe({
         next: () => this.closeDialog(true),
@@ -89,9 +73,9 @@ this.form = new FormGroup({
       });
   }
 
-  update(renter: renter) {
-    this.renterPutUseCase
-      .execute(renter)
+  update(rentalDuration: rentalDuration) {
+    this.rentalDurationPutUseCase
+      .execute(rentalDuration)
       .pipe(finalize(() => (this.loading = false)))
       .subscribe({
         next: () => this.closeDialog(true),
@@ -118,19 +102,16 @@ submit() {
   }
 
   const formValue = this.form.value;
-  
-  const renter: renter = {
+  const rentalDuration: rentalDuration = {
     id: this.data?.id || '',
     name: formValue.name || '',
-    email: formValue.email || '',
-    budget: formValue.budget || '',
-    phoneNumber: formValue.phoneNumber || '',
+    months: formValue.months || 0,      
   };
   
   if (this.data?.id) {
-    this.update(renter);
+    this.update(rentalDuration);
   } else {
-    this.create(renter);
+    this.create(rentalDuration);
   }
 }
 

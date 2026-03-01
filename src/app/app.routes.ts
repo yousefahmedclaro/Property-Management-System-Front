@@ -45,13 +45,23 @@ export const routes: Routes = [
           ).then((m) => m.RenterComponent),
       },
 
-            {
+      {
         path: 'categories',
         loadComponent: () =>
           import(
             '../Modules/PropertyCrm/PropertyCrm.presentation/category/category.component'
           ).then((m) => m.CategoryComponent),
       },
+
+            {
+        path: 'rentalDurations',
+        loadComponent: () =>
+          import(
+            '../Modules/PropertyCrm/PropertyCrm.presentation/rentalDuration/rentalDuration.component'
+          ).then((m) => m.RentalDurationComponent),
+      },
+
+
       //       {
       //   path: 'orderassets',
       //   loadComponent: () =>
