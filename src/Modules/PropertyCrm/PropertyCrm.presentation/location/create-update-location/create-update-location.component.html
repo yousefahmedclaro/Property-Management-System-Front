@@ -1,0 +1,87 @@
+<div class="flex flex-col gap-6">
+  <fieldset class="flex flex-col gap-4">
+    <div class="flex-1">
+      <label for="arabicName" class="block mb-3 font-bold">
+        {{ "arabic_name" | translate }}
+      </label>
+      <input
+        type="text"
+        pInputText
+        id="arabicName"
+        [formControl]="arName"
+        required
+        autofocus
+        fluid
+        [ngClass]="{ 'ng-invalid': submitted && arName.invalid }"
+      />
+      @if (submitted && !arName.value) {
+        <small class="text-red-500">{{ "General.required" | translate }}</small>
+      }
+      @if (arName.errors?.['serverError']) {
+        @for (err of arName.errors?.['serverError']; track $index) {
+          <p class="text-red-500">{{ err }}</p>
+        }
+      }
+    </div>
+
+    <div class="flex-1">
+      <label for="englishName" class="block mb-3 font-bold">
+        {{ "english_name" | translate }}
+      </label>
+      <input
+        type="text"
+        pInputText
+        id="englishName"
+        [formControl]="enName"
+        required
+        fluid
+        [ngClass]="{ 'ng-invalid': submitted && enName.invalid }"
+      />
+      @if (submitted && !enName.value) {
+        <small class="text-red-500">{{ "General.required" | translate }}</small>
+      }
+      @if (enName.errors?.['serverError']) {
+        @for (err of enName.errors?.['serverError']; track $index) {
+          <p class="text-red-500">{{ err }}</p>
+        }
+      }
+    </div>
+
+    <div class="flex-1">
+      <label for="parentLocationId" class="block mb-3 font-bold">
+        {{ "parent_location" | translate }}
+      </label>
+      <p-select
+        [options]="locationOptions"
+        id="parentLocationId"
+        [formControl]="parentLocationId"
+        optionLabel="name"
+        optionValue="id"
+        placeholder="{{ 'parent_location' | translate }}"
+        [showClear]="true"
+        class="w-full"
+      />
+      @if (parentLocationId.errors?.['serverError']) {
+        @for (err of parentLocationId.errors?.['serverError']; track $index) {
+          <p class="text-red-500">{{ err }}</p>
+        }
+      }
+    </div>
+  </fieldset>
+</div>
+
+<div class="flex justify-end gap-4 mt-4">
+  <p-button
+    label="Cancel"
+    icon="pi pi-times"
+    text
+    (click)="closeDialog()"
+  />
+  <p-button
+    label="Save"
+    icon="pi pi-check"
+    [loading]="loading"
+    (click)="submit()"
+    [disabled]="!form.dirty"
+  />
+</div>

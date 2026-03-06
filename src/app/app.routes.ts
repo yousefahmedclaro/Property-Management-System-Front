@@ -61,6 +61,14 @@ export const routes: Routes = [
           ).then((m) => m.RentalDurationComponent),
       },
 
+                  {
+        path: 'location',
+        loadComponent: () =>
+          import(
+            '../Modules/PropertyCrm/PropertyCrm.presentation/location/location.component'
+          ).then((m) => m.LocationComponent),
+      },
+
 
       //       {
       //   path: 'orderassets',
