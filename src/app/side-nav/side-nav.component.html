@@ -102,6 +102,18 @@
         </a>
       </li>
 
+
+
+    <li>
+        <a
+          [ngClass]="{ active: activeRoute() == 'property' }"
+          routerLink="/property"
+        >
+          <i class="me-2 pi pi-building-columns"></i>
+          <span class="font-medium">{{ "property" | translate }}</span>
+        </a>
+      </li>
+
       <!-- <li>
         <a
           [ngClass]="{ active: activeRoute() == 'orderassets' }"

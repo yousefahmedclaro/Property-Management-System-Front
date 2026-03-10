@@ -1,0 +1,151 @@
+<div class="flex flex-col gap-6">
+  <fieldset class="flex flex-col gap-4">
+
+    <!-- Code -->
+    <div class="flex-1">
+      <label for="code" class="block mb-3 font-bold">{{ "code" | translate }}</label>
+      <input type="text" pInputText id="code" [formControl]="code" required autofocus fluid
+        [ngClass]="{ 'ng-invalid': submitted && code.invalid }" />
+      @if (submitted && !code.value) {
+        <small class="text-red-500">{{ "General.required" | translate }}</small>
+      }
+      @if (code.errors?.['serverError']) {
+        @for (err of code.errors?.['serverError']; track $index) {
+          <p class="text-red-500">{{ err }}</p>
+        }
+      }
+    </div>
+
+    <!-- Price -->
+    <div class="flex-1">
+      <label for="price" class="block mb-3 font-bold">{{ "price" | translate }}</label>
+      <input type="number" pInputText id="price" [formControl]="price" required fluid
+        [ngClass]="{ 'ng-invalid': submitted && price.invalid }" />
+      @if (submitted && !price.value) {
+        <small class="text-red-500">{{ "General.required" | translate }}</small>
+      }
+      @if (price.errors?.['serverError']) {
+        @for (err of price.errors?.['serverError']; track $index) {
+          <p class="text-red-500">{{ err }}</p>
+        }
+      }
+    </div>
+
+    <!-- Size -->
+    <div class="flex-1">
+      <label for="size" class="block mb-3 font-bold">{{ "size" | translate }}</label>
+      <input type="number" pInputText id="size" [formControl]="size" required fluid
+        [ngClass]="{ 'ng-invalid': submitted && size.invalid }" />
+      @if (submitted && !size.value) {
+        <small class="text-red-500">{{ "General.required" | translate }}</small>
+      }
+      @if (size.errors?.['serverError']) {
+        @for (err of size.errors?.['serverError']; track $index) {
+          <p class="text-red-500">{{ err }}</p>
+        }
+      }
+    </div>
+
+    <!-- Building Number -->
+    <div class="flex-1">
+      <label for="buildingNumber" class="block mb-3 font-bold">{{ "buildingNumber" | translate }}</label>
+      <input type="number" pInputText id="buildingNumber" [formControl]="buildingNumber" required fluid
+        [ngClass]="{ 'ng-invalid': submitted && buildingNumber.invalid }" />
+      @if (submitted && !buildingNumber.value) {
+        <small class="text-red-500">{{ "General.required" | translate }}</small>
+      }
+      @if (buildingNumber.errors?.['serverError']) {
+        @for (err of buildingNumber.errors?.['serverError']; track $index) {
+          <p class="text-red-500">{{ err }}</p>
+        }
+      }
+    </div>
+
+    <!-- Owner -->
+    <div class="flex-1">
+      <label for="ownerId" class="block mb-3 font-bold">{{ "owner" | translate }}</label>
+      <p-select [options]="ownerOptions" id="ownerId" [formControl]="ownerId"
+        optionLabel="name" optionValue="id"
+        placeholder="{{ 'owner' | translate }}" class="w-full" />
+      @if (submitted && !ownerId.value) {
+        <small class="text-red-500">{{ "General.required" | translate }}</small>
+      }
+      @if (ownerId.errors?.['serverError']) {
+        @for (err of ownerId.errors?.['serverError']; track $index) {
+          <p class="text-red-500">{{ err }}</p>
+        }
+      }
+    </div>
+
+    <!-- Category -->
+    <div class="flex-1">
+      <label for="categoryId" class="block mb-3 font-bold">{{ "category" | translate }}</label>
+      <p-select [options]="categoryOptions" id="categoryId" [formControl]="categoryId"
+        optionLabel="name" optionValue="id"
+        placeholder="{{ 'category' | translate }}" class="w-full" />
+      @if (submitted && !categoryId.value) {
+        <small class="text-red-500">{{ "General.required" | translate }}</small>
+      }
+      @if (categoryId.errors?.['serverError']) {
+        @for (err of categoryId.errors?.['serverError']; track $index) {
+          <p class="text-red-500">{{ err }}</p>
+        }
+      }
+    </div>
+
+    <!-- Location (Parent) -->
+    <div class="flex-1">
+      <label for="locationId" class="block mb-3 font-bold">{{ "location" | translate }}</label>
+      <p-select [options]="locationOptions" id="locationId" [formControl]="locationId"
+        optionLabel="name" optionValue="id"
+        placeholder="{{ 'location' | translate }}" [showClear]="true" class="w-full"
+        (onChange)="onLocationChange($event)" />
+      @if (submitted && !locationId.value) {
+        <small class="text-red-500">{{ "General.required" | translate }}</small>
+      }
+      @if (locationId.errors?.['serverError']) {
+        @for (err of locationId.errors?.['serverError']; track $index) {
+          <p class="text-red-500">{{ err }}</p>
+        }
+      }
+    </div>
+
+    <!-- Child Location (appears only if parent has children) -->
+    @if (childLocationOptions.length > 0) {
+      <div class="flex-1">
+        <label for="childLocationId" class="block mb-3 font-bold">{{ "sub_location" | translate }}</label>
+        <p-select [options]="childLocationOptions" id="childLocationId" [formControl]="childLocationId"
+          optionLabel="name" optionValue="id"
+          placeholder="{{ 'sub_location' | translate }}" [showClear]="true" class="w-full" />
+        @if (childLocationId.errors?.['serverError']) {
+          @for (err of childLocationId.errors?.['serverError']; track $index) {
+            <p class="text-red-500">{{ err }}</p>
+          }
+        }
+      </div>
+    }
+
+    <!-- Rental Durations (multi-select) -->
+    <div class="flex-1">
+      <label for="allowedRentalDurationIds" class="block mb-3 font-bold">{{ "rental_durations" | translate }}</label>
+      <p-multiselect [options]="rentalDurationOptions" id="allowedRentalDurationIds"
+        [formControl]="allowedRentalDurationIds"
+        optionLabel="name" optionValue="id"
+        placeholder="{{ 'rental_durations' | translate }}" class="w-full" />
+      @if (submitted && !allowedRentalDurationIds.value?.length) {
+        <small class="text-red-500">{{ "General.required" | translate }}</small>
+      }
+      @if (allowedRentalDurationIds.errors?.['serverError']) {
+        @for (err of allowedRentalDurationIds.errors?.['serverError']; track $index) {
+          <p class="text-red-500">{{ err }}</p>
+        }
+      }
+    </div>
+
+  </fieldset>
+</div>
+
+<div class="flex justify-end gap-4 mt-4">
+  <p-button label="Cancel" icon="pi pi-times" text (click)="closeDialog()" />
+  <p-button label="Save" icon="pi pi-check" [loading]="loading" (click)="submit()" [disabled]="!form.dirty" />
+</div>

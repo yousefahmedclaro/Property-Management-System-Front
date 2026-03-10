@@ -1,6 +1,8 @@
 import { Routes } from '@angular/router';
 import { authGuard } from './guards/auth.guard';
 import { NoAuthGuard } from './guards/non-auth.guard';
+import { PropertyDetailsComponent } from '../Modules/PropertyCrm/PropertyCrm.presentation/property/property-details.component';
+import { PropertyComponent } from '../Modules/PropertyCrm/PropertyCrm.presentation/property/property.component';
 
 export const routes: Routes = [
   {
@@ -80,6 +82,18 @@ export const routes: Routes = [
       },
 
 
+            {
+        path: 'property',
+        loadComponent: () =>
+          import(
+            '../Modules/PropertyCrm/PropertyCrm.presentation/property/property.component'
+          ).then((m) => m.PropertyComponent),
+      },
+
+      {
+        path: 'property/:id',
+        component: PropertyDetailsComponent,
+      },
 
 
 
