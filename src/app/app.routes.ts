@@ -61,13 +61,27 @@ export const routes: Routes = [
           ).then((m) => m.RentalDurationComponent),
       },
 
-                  {
+      {
         path: 'location',
         loadComponent: () =>
           import(
             '../Modules/PropertyCrm/PropertyCrm.presentation/location/location.component'
           ).then((m) => m.LocationComponent),
       },
+
+
+      
+      {
+        path: 'owner',
+        loadComponent: () =>
+          import(
+            '../Modules/PropertyCrm/PropertyCrm.presentation/owner/owner.component'
+          ).then((m) => m.OwnerComponent),
+      },
+
+
+
+
 
 
       //       {

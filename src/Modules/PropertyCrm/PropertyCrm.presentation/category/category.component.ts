@@ -72,6 +72,7 @@ export class CategoryComponent implements OnInit {
 
   public readonly columns = signal<any[]>([
     { name: this.translateService.instant('name'), field: 'name' },
+    { name: this.translateService.instant('action'), field: 'actionsss' },
   ]);
 
 

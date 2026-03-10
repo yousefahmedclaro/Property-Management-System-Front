@@ -55,7 +55,7 @@
           routerLink="/renters"
         >
           <i class="me-2 pi pi-building-columns"></i>
-          <span class="font-medium">{{ "SideNav.renters" | translate }}</span>
+          <span class="font-medium">{{ "renters" | translate }}</span>
         </a>
       </li>
 
@@ -65,7 +65,7 @@
           routerLink="/categories"
         >
           <i class="me-2 pi pi-building-columns"></i>
-          <span class="font-medium">{{ "SideNav.categories" | translate }}</span>
+          <span class="font-medium">{{ "categories" | translate }}</span>
         </a>
       </li>
 
@@ -75,7 +75,7 @@
           routerLink="/rentalDurations"
         >
           <i class="me-2 pi pi-building-columns"></i>
-          <span class="font-medium">{{ "SideNav.rentalDurations" | translate }}</span>
+          <span class="font-medium">{{ "rental Durations" | translate }}</span>
         </a>
       </li>
 
@@ -87,7 +87,18 @@
           routerLink="/location"
         >
           <i class="me-2 pi pi-building-columns"></i>
-          <span class="font-medium">{{ "SideNav.location" | translate }}</span>
+          <span class="font-medium">{{ "location" | translate }}</span>
+        </a>
+      </li>
+
+
+      <li>
+        <a
+          [ngClass]="{ active: activeRoute() == 'owners' }"
+          routerLink="/owner"
+        >
+          <i class="me-2 pi pi-building-columns"></i>
+          <span class="font-medium">{{ "owner" | translate }}</span>
         </a>
       </li>
 
@@ -186,7 +197,7 @@
   </div>
   <div class="mt-auto">
     <span class="flex justify-center text-sm"
-      >© 2024 Claro. All rights reserved</span
+      >© 2026 Claro. All rights reserved</span
     >
     <hr class="mx-4 mb-4 border-0 border-surface border-t" />
     <p-toast />

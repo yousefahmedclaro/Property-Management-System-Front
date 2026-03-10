@@ -1,0 +1,60 @@
+.active {
+  @apply bg-[#34374B] rounded-e-[50px];
+}
+
+li a {
+  @apply flex items-center hover:bg-[var(--hover-color)] p-4 rounded-e-[50px] duration-150 cursor-pointer;
+}
+
+/* Animation for Slide Down */
+@-webkit-keyframes slidedown {
+  from {
+    transform: translateY(-30%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes slidedown {
+  from {
+    transform: translateY(-30%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+.animate-slidedown {
+  -webkit-animation: slidedown 0.2s ease-out;
+          animation: slidedown 0.2s ease-out;
+}
+
+/* Animation for Slide Up */
+@-webkit-keyframes slideup {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-30%);
+    opacity: 0;
+  }
+}
+@keyframes slideup {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-30%);
+    opacity: 0;
+  }
+}
+.animate-slideup {
+  -webkit-animation: slideup 0.2s ease-out;
+          animation: slideup 0.2s ease-out;
+}
+/*# sourceMappingURL=side-nav.component.css.map */

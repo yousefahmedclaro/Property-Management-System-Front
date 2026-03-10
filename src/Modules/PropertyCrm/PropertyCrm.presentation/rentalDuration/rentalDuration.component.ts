@@ -73,7 +73,7 @@ export class RentalDurationComponent implements OnInit {
   public readonly columns = signal<any[]>([
     { name: this.translateService.instant('name'), field: 'name' },
     { name: this.translateService.instant('months'), field: 'months' },
-    { name: this.translateService.instant('actionsss'), field: 'actionsss' },
+    { name: this.translateService.instant('action'), field: 'actionsss' },
   ]);
 
 

@@ -75,6 +75,7 @@ export class RenterComponent implements OnInit {
     { name: this.translateService.instant('email'), field: 'email' },
     { name: this.translateService.instant('budget'), field: 'budget' },
     { name: this.translateService.instant('phoneNumber'), field: 'phoneNumber' },
+    { name: this.translateService.instant('action'), field: 'actionsss' },
   ]);
 
 

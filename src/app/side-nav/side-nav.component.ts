@@ -1,21 +1,18 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit, signal } from '@angular/core';
 import {
-  ActivatedRoute,
   NavigationStart,
   Router,
   RouterModule,
 } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { Tree } from 'primeng/tree';
-import { ConfirmationService, MessageService, TreeNode } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { AuthService } from '../../Modules/Identity/Identity.Application/auth-service';
 import { ButtonModule } from 'primeng/button';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmDialog } from 'primeng/confirmdialog';
 import { UserLogOutUseCase } from '../../Modules/Identity/Identity.Application/usecases/user-logout.usecase';
 import { StyleClass } from 'primeng/styleclass';
-import { Ripple } from 'primeng/ripple';
 @Component({
   selector: 'app-side-nav',
   templateUrl: './side-nav.component.html',

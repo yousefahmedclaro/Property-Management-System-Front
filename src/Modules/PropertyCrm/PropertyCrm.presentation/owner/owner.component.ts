@@ -14,14 +14,14 @@ import { InputGroup } from 'primeng/inputgroup';
 import { AuthService } from '../../../Identity/Identity.Application/auth-service';
 import { Toast } from 'primeng/toast';
 import { ConfirmDialog } from 'primeng/confirmdialog';
-import { Location } from '../../PropertyCrm.Domain/location';
-import { LocationDeleteUseCase, LocationDeleteProviders } from '../../PropertyCrm.Application/usecases/location/locationDeleteUseCase';
-import { LocationGetPageUseCase, LocationGetPageProviders } from '../../PropertyCrm.Application/usecases/location/locationGetPageUseCase';
-import { CreateUpdateLocationComponent } from './create-update-location/create-update-location.component';
+import { owner } from '../../PropertyCrm.Domain/owner';
+import { CreateUpdateOwnerComponent } from './create-update-owner/create-update-owner.component';
+import { ownerDeleteProviders, ownerDeleteUseCase } from '../../PropertyCrm.Application/usecases/owner/ownerDeleteusecase';
+import { ownerGetPageProviders, ownerGetPageUseCase } from '../../PropertyCrm.Application/usecases/owner/ownerGetPageusecase';
 
 @Component({
-  selector: 'app-location',
-  templateUrl: './location.component.html',
+  selector: 'app-owner',
+  templateUrl: './owner.component.html',
   standalone: true,
   imports: [
     TranslateModule,
@@ -36,43 +36,43 @@ import { CreateUpdateLocationComponent } from './create-update-location/create-u
     ConfirmDialog,
   ],
   providers: [
-    LocationDeleteProviders,
-    LocationGetPageProviders,
+    ownerDeleteProviders,
+    ownerGetPageProviders,
     DialogService,
     MessageService,
     ConfirmationService,
   ],
 })
-export class LocationComponent implements OnInit {
+export class OwnerComponent implements OnInit {
   public readonly authService = inject(AuthService);
   private readonly dialogService = inject(DialogService);
   private readonly messageService = inject(MessageService);
   private readonly translateService = inject(TranslateService);
   private readonly confirmationService = inject(ConfirmationService);
-  private readonly locationDeleteUseCase = inject(LocationDeleteUseCase);
-  private readonly locationGetPageUseCase = inject(LocationGetPageUseCase);
+  private readonly ownerDeleteUseCase = inject(ownerDeleteUseCase);
+  private readonly ownerGetPageUseCase = inject(ownerGetPageUseCase);
 
   public searchQuery = { data: '' };
-  public pagesData: { data?: PaginationRespons<Location> } = { data: undefined };
+  public pagesData: { data?: PaginationRespons<owner> } = { data: undefined };
   public loading = false;
 
-  public readonly table = new TableComponent<Location>(
+  public readonly table = new TableComponent<owner>(
     this.translateService,
     this.dialogService,
     this.messageService,
     this.confirmationService,
     this.getData,
     this.searchQuery,
-    this.locationGetPageUseCase,
+    this.ownerGetPageUseCase,
     this.pagesData
   );
 
   public readonly columns = signal<any[]>([
-    { name: this.translateService.instant('arabic_name'), field: 'name.ar' },
-    { name: this.translateService.instant('english_name'), field: 'name.en' },
-    { name: this.translateService.instant('parent_location'), field: 'parentLocationId' },
-    { name: this.translateService.instant('action'), field: 'actionsss' },
-
+    { name: this.translateService.instant('name'), field: 'name' },
+    { name: this.translateService.instant('email'), field: 'email' },
+    { name: this.translateService.instant('phoneNumber'), field: 'phoneNumber' },
+    { name: this.translateService.instant('incomeBalance'), field: 'incomeBalance' },
+    { name: this.translateService.instant('action'), field: 'actions' },
   ]);
 
   ngOnInit() {
@@ -80,27 +80,27 @@ export class LocationComponent implements OnInit {
   }
 
   getData(params: PaginationParams) {
-    this.locationGetPageUseCase.execute({ params }).subscribe((data) => {
+    this.ownerGetPageUseCase.execute({ params }).subscribe((data) => {
       this.pagesData.data = data;
     });
   }
 
   create() {
-    this.table.openCreateUpdateDialog(CreateUpdateLocationComponent, () => {
+    this.table.openCreateUpdateDialog(CreateUpdateOwnerComponent, () => {
       this.getData(this.table.PaginationParams);
     });
   }
 
-  update(location: Location) {
+  update(owner: owner) {
     this.table.openCreateUpdateDialog(
-      CreateUpdateLocationComponent,
+      CreateUpdateOwnerComponent,
       () => this.getData(this.table.PaginationParams),
-      location
+      owner
     );
   }
 
-  delete(location: Location) {
-    this.table.delete(location, this.locationDeleteUseCase, () => {
+  delete(owner: owner) {
+    this.table.delete(owner, this.ownerDeleteUseCase, () => {
       this.getData(this.table.PaginationParams);
     });
   }
