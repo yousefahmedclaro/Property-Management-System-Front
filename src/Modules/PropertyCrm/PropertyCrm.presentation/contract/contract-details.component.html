@@ -1,0 +1,88 @@
+<main class="mx-auto p-6 max-w-4xl">
+
+  <div class="flex items-center gap-4 mb-6">
+    <p-button icon="pi pi-arrow-left" variant="text" severity="secondary" (onClick)="goBack()" />
+    <h1 class="font-medium text-3xl">{{ 'contract_details' | translate }}</h1>
+  </div>
+
+  @if (loading) {
+    <div class="flex justify-center items-center h-48">
+      <i class="text-primary text-4xl pi pi-spin pi-spinner"></i>
+    </div>
+  }
+
+  @if (!loading && contract) {
+    <div class="gap-4 grid grid-cols-1 md:grid-cols-2">
+
+      <!-- Owner -->
+      <div class="p-4 border rounded-lg">
+        <p class="mb-1 text-gray-500 text-sm">{{ 'owner' | translate }}</p>
+        <p class="font-semibold text-lg">{{ contract.ownerName ?? '--' }}</p>
+        <p class="text-gray-400 text-sm">{{ contract.ownerEmail ?? '' }}</p>
+      </div>
+
+      <!-- Renter -->
+      <div class="p-4 border rounded-lg">
+        <p class="mb-1 text-gray-500 text-sm">{{ 'renter' | translate }}</p>
+        <p class="font-semibold text-lg">{{ contract.renterName ?? '--' }}</p>
+        <p class="text-gray-400 text-sm">{{ contract.renterEmail ?? '' }}</p>
+      </div>
+
+      <!-- Property Code -->
+      <div class="p-4 border rounded-lg">
+        <p class="mb-1 text-gray-500 text-sm">{{ 'code' | translate }}</p>
+        <p class="font-semibold text-lg">{{ contract.code ?? '--' }}</p>
+      </div>
+
+      <!-- Property Location -->
+      <div class="p-4 border rounded-lg">
+        <p class="mb-1 text-gray-500 text-sm">{{ 'location' | translate }}</p>
+        <p class="font-semibold text-lg">{{ contract.propertyLocation ?? '--' }}</p>
+      </div>
+
+      <!-- Property Size -->
+      <div class="p-4 border rounded-lg">
+        <p class="mb-1 text-gray-500 text-sm">{{ 'size' | translate }}</p>
+        <p class="font-semibold text-lg">{{ contract.propertySize ?? '--' }}</p>
+      </div>
+
+      <!-- Property Category -->
+      <div class="p-4 border rounded-lg">
+        <p class="mb-1 text-gray-500 text-sm">{{ 'category' | translate }}</p>
+        <p class="font-semibold text-lg">{{ contract.propertyCategory ?? '--' }}</p>
+      </div>
+
+      <!-- Rent Duration -->
+      <div class="p-4 border rounded-lg">
+        <p class="mb-1 text-gray-500 text-sm">{{ 'rental_duration' | translate }}</p>
+        <p class="font-semibold text-lg">{{ contract.propertyRentDuration ?? '--' }}</p>
+      </div>
+
+      <!-- Contract Price -->
+      <div class="p-4 border rounded-lg">
+        <p class="mb-1 text-gray-500 text-sm">{{ 'contract_price' | translate }}</p>
+        <p class="font-semibold text-lg">{{ contract.contractPrice ?? '--' }}</p>
+      </div>
+
+      <!-- Start Date -->
+      <div class="p-4 border rounded-lg">
+        <p class="mb-1 text-gray-500 text-sm">{{ 'start_date' | translate }}</p>
+        <p class="font-semibold text-lg">{{ contract.contractStartDate | date:'mediumDate' }}</p>
+      </div>
+
+      <!-- End Date -->
+      <div class="p-4 border rounded-lg">
+        <p class="mb-1 text-gray-500 text-sm">{{ 'end_date' | translate }}</p>
+        <p class="font-semibold text-lg">{{ contract.contractEndDate | date:'mediumDate' }}</p>
+      </div>
+
+    </div>
+  }
+
+  @if (!loading && !contract) {
+    <div class="flex justify-center items-center h-48">
+      <p class="text-gray-500 text-lg">{{ 'General.no_data_found' | translate }}</p>
+    </div>
+  }
+
+</main>

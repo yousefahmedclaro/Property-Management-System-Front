@@ -114,6 +114,15 @@
         </a>
       </li>
 
+       <li>
+        <a
+          [ngClass]="{ active: activeRoute() == 'contracts' }"
+          routerLink="/contract"
+        >
+          <i class="me-2 pi pi-building-columns"></i>
+          <span class="font-medium">{{ "contracts" | translate }}</span>
+        </a>
+
       <!-- <li>
         <a
           [ngClass]="{ active: activeRoute() == 'orderassets' }"

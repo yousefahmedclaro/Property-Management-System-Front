@@ -1,0 +1,23 @@
+export interface contract {
+  id?: string | null;
+  ownerId?: string | null;
+  ownerName?: string | null;
+  ownerEmail?: string | null;
+  renterId?: string | null;
+  renterName?: string | null;
+  renterEmail?: string | null;
+  propertyId?: string | null;
+  code?: string | null;
+  propertyLocation?: string | null;
+  propertySize?: number | null;
+  propertyCategory?: string | null;
+  propertyRentDuration?: string | null;
+  rentalDurationId?: string | null;
+  contractPrice?: number | null;
+  contractStartDate?: string | null;
+  contractEndDate?: string | null;
+  monthlyRentAmount?: number | null;
+  annualIncreament?: number | null;
+  insurance?: number | null;
+  startData?: string | null;
+}

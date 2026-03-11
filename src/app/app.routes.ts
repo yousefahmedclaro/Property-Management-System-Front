@@ -3,6 +3,7 @@ import { authGuard } from './guards/auth.guard';
 import { NoAuthGuard } from './guards/non-auth.guard';
 import { PropertyDetailsComponent } from '../Modules/PropertyCrm/PropertyCrm.presentation/property/property-details.component';
 import { PropertyComponent } from '../Modules/PropertyCrm/PropertyCrm.presentation/property/property.component';
+import { ContractDetailsComponent } from '../Modules/PropertyCrm/PropertyCrm.presentation/contract/contract-details.component';
 
 export const routes: Routes = [
   {
@@ -95,8 +96,14 @@ export const routes: Routes = [
         component: PropertyDetailsComponent,
       },
 
-
-
+            {
+        path: 'contract',
+        loadComponent: () =>
+          import(
+            '../Modules/PropertyCrm/PropertyCrm.presentation/contract/contract.component'
+          ).then((m) => m.ContractComponent),
+      },
+      { path: 'contract/:id', component: ContractDetailsComponent },
 
       //       {
       //   path: 'orderassets',

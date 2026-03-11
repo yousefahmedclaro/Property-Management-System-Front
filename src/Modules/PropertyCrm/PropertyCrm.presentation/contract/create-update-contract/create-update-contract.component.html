@@ -1,0 +1,136 @@
+<div class="flex flex-col gap-6">
+  <fieldset class="flex flex-col gap-4">
+
+    <!-- Owner -->
+    <div class="flex-1">
+      <label for="ownerId" class="block mb-3 font-bold">{{ "owner" | translate }}</label>
+      <p-select [options]="ownerOptions" id="ownerId" [formControl]="ownerId"
+        optionLabel="name" optionValue="id"
+        placeholder="{{ 'owner' | translate }}" class="w-full" />
+      @if (submitted && !ownerId.value) {
+        <small class="text-red-500">{{ "General.required" | translate }}</small>
+      }
+      @if (ownerId.errors?.['serverError']) {
+        @for (err of ownerId.errors?.['serverError']; track $index) {
+          <p class="text-red-500">{{ err }}</p>
+        }
+      }
+    </div>
+
+    <!-- Renter -->
+    <div class="flex-1">
+      <label for="renterId" class="block mb-3 font-bold">{{ "renter" | translate }}</label>
+      <p-select [options]="renterOptions" id="renterId" [formControl]="renterId"
+        optionLabel="name" optionValue="id"
+        placeholder="{{ 'renter' | translate }}" class="w-full" />
+      @if (submitted && !renterId.value) {
+        <small class="text-red-500">{{ "General.required" | translate }}</small>
+      }
+      @if (renterId.errors?.['serverError']) {
+        @for (err of renterId.errors?.['serverError']; track $index) {
+          <p class="text-red-500">{{ err }}</p>
+        }
+      }
+    </div>
+
+    <!-- Property -->
+    <div class="flex-1">
+      <label for="propertyId" class="block mb-3 font-bold">{{ "property" | translate }}</label>
+      <p-select [options]="propertyOptions" id="propertyId" [formControl]="propertyId"
+        optionLabel="name" optionValue="id"
+        placeholder="{{ 'property' | translate }}" class="w-full"
+        (onChange)="onPropertyChange($event)" />
+      @if (submitted && !propertyId.value) {
+        <small class="text-red-500">{{ "General.required" | translate }}</small>
+      }
+      @if (propertyId.errors?.['serverError']) {
+        @for (err of propertyId.errors?.['serverError']; track $index) {
+          <p class="text-red-500">{{ err }}</p>
+        }
+      }
+    </div>
+
+    <!-- Rental Duration (loaded based on selected property) -->
+    <div class="flex-1">
+      <label for="rentalDurationId" class="block mb-3 font-bold">{{ "rental_duration" | translate }}</label>
+      <p-select [options]="rentalDurationOptions" id="rentalDurationId" [formControl]="rentalDurationId"
+        optionLabel="name" optionValue="id"
+        placeholder="{{ propertyId.value ? ('rental_duration' | translate) : ('select_property_first' | translate) }}"
+        class="w-full" [disabled]="!propertyId.value" />
+      @if (submitted && !rentalDurationId.value) {
+        <small class="text-red-500">{{ "General.required" | translate }}</small>
+      }
+      @if (rentalDurationId.errors?.['serverError']) {
+        @for (err of rentalDurationId.errors?.['serverError']; track $index) {
+          <p class="text-red-500">{{ err }}</p>
+        }
+      }
+    </div>
+
+    <!-- Start Date -->
+    <div class="flex-1">
+      <label for="startData" class="block mb-3 font-bold">{{ "start_date" | translate }}</label>
+      <input type="date" pInputText id="startData" [formControl]="startData" required fluid
+        [ngClass]="{ 'ng-invalid': submitted && startData.invalid }" />
+      @if (submitted && !startData.value) {
+        <small class="text-red-500">{{ "General.required" | translate }}</small>
+      }
+      @if (startData.errors?.['serverError']) {
+        @for (err of startData.errors?.['serverError']; track $index) {
+          <p class="text-red-500">{{ err }}</p>
+        }
+      }
+    </div>
+
+    <!-- Monthly Rent Amount -->
+    <div class="flex-1">
+      <label for="monthlyRentAmount" class="block mb-3 font-bold">{{ "monthly_rent_amount" | translate }}</label>
+      <input type="number" pInputText id="monthlyRentAmount" [formControl]="monthlyRentAmount" required fluid
+        [ngClass]="{ 'ng-invalid': submitted && monthlyRentAmount.invalid }" />
+      @if (submitted && !monthlyRentAmount.value) {
+        <small class="text-red-500">{{ "General.required" | translate }}</small>
+      }
+      @if (monthlyRentAmount.errors?.['serverError']) {
+        @for (err of monthlyRentAmount.errors?.['serverError']; track $index) {
+          <p class="text-red-500">{{ err }}</p>
+        }
+      }
+    </div>
+
+    <!-- Annual Increament -->
+    <div class="flex-1">
+      <label for="annualIncreament" class="block mb-3 font-bold">{{ "annual_increament" | translate }}</label>
+      <input type="number" pInputText id="annualIncreament" [formControl]="annualIncreament" required fluid
+        [ngClass]="{ 'ng-invalid': submitted && annualIncreament.invalid }" />
+      @if (submitted && !annualIncreament.value) {
+        <small class="text-red-500">{{ "General.required" | translate }}</small>
+      }
+      @if (annualIncreament.errors?.['serverError']) {
+        @for (err of annualIncreament.errors?.['serverError']; track $index) {
+          <p class="text-red-500">{{ err }}</p>
+        }
+      }
+    </div>
+
+    <!-- Insurance -->
+    <div class="flex-1">
+      <label for="insurance" class="block mb-3 font-bold">{{ "insurance" | translate }}</label>
+      <input type="number" pInputText id="insurance" [formControl]="insurance" required fluid
+        [ngClass]="{ 'ng-invalid': submitted && insurance.invalid }" />
+      @if (submitted && !insurance.value) {
+        <small class="text-red-500">{{ "General.required" | translate }}</small>
+      }
+      @if (insurance.errors?.['serverError']) {
+        @for (err of insurance.errors?.['serverError']; track $index) {
+          <p class="text-red-500">{{ err }}</p>
+        }
+      }
+    </div>
+
+  </fieldset>
+</div>
+
+<div class="flex justify-end gap-4 mt-4">
+  <p-button label="Cancel" icon="pi pi-times" text (click)="closeDialog()" />
+  <p-button label="Save" icon="pi pi-check" [loading]="loading" (click)="submit()" [disabled]="!form.dirty" />
+</div>
