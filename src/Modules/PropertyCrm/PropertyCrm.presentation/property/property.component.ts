@@ -71,13 +71,7 @@ export class PropertyComponent implements OnInit {
 
   public readonly columns = signal<any[]>([
     { name: this.translateService.instant('code'), field: 'code' },
-    { name: this.translateService.instant('price'), field: 'price' },
-    { name: this.translateService.instant('size'), field: 'size' },
-    { name: this.translateService.instant('buildingNumber'), field: 'buildingNumber' },
-    { name: this.translateService.instant('isAvailable'), field: 'isAvailable' },
-    { name: this.translateService.instant('owner'), field: 'owner' },
     { name: this.translateService.instant('location'), field: 'location' },
-    { name: this.translateService.instant('category'), field: 'categoryName' },
     { name: this.translateService.instant('rental_durations'), field: 'allowedDurations' },
     { name: this.translateService.instant('action'), field: 'actions' },
   ]);

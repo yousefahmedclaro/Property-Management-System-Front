@@ -74,10 +74,7 @@ export class ContractComponent implements OnInit {
   public readonly columns = signal<any[]>([
     { name: this.translateService.instant('owner'), field: 'ownerName' },
     { name: this.translateService.instant('renter'), field: 'renterName' },
-    { name: this.translateService.instant('code'), field: 'code' },
-    { name: this.translateService.instant('location'), field: 'propertyLocation' },
     { name: this.translateService.instant('rental_duration'), field: 'propertyRentDuration' },
-    { name: this.translateService.instant('contract_price'), field: 'contractPrice' },
     { name: this.translateService.instant('start_date'), field: 'contractStartDate' },
     { name: this.translateService.instant('end_date'), field: 'contractEndDate' },
     { name: this.translateService.instant('action'), field: 'actions' },

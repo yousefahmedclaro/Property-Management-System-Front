@@ -40,13 +40,7 @@
     <ng-template pTemplate="body" let-item>
       <tr>
         <td>{{ item.code ?? '--' }}</td>
-        <td>{{ item.price ?? '--' }}</td>
-        <td>{{ item.size ?? '--' }}</td>
-        <td>{{ item.buildingNumber ?? '--' }}</td>
-        <td>{{ item.isAvailable ?? '--' }}</td>
-        <td>{{ item.owner ?? '--' }}</td>
         <td>{{ item.location ?? '--' }}</td>
-        <td>{{ item.categoryName ?? '--' }}</td>
         <td>{{ item.allowedDurations?.join(', ') ?? '--' }}</td>
 <td>
   <p-toast></p-toast>
